@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Animated, { Layout } from "react-native-reanimated";
-import COLORS from "../lark/colors";
-
 const conversation: Conversations = require("../lark/conversation.json");
+
+import COLORS from "../lark/colors";
 import ChatBubble from "./ChatBubble";
 
 const DELAY = 1.5 * 1000;
@@ -16,13 +16,13 @@ const ChatWrapper = () => {
   ]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  // Add chats from conversation.json to the UI by their node ID
   const addChatsByCurrentNodeIds = useCallback(async (nodeIds: string[]) => {
     const newChats = nodeIds.map((nId) => conversation.nodes[nId]);
     const isButton = newChats.reduce(
       (bool, chat) => bool || chat?.input?.type === "button",
       false
     );
-
     const nextIds = newChats.reduce(
       (ids, chat) => [...ids, ...chat.childrenIds],
       [] as string[]
@@ -35,6 +35,7 @@ const ChatWrapper = () => {
     setCurrentNodeIds(nextIds);
   }, []);
 
+  // When node IDs get added, add the chats to the UI after delay
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -44,7 +45,7 @@ const ChatWrapper = () => {
   }, [currentNodeIds.join("")]);
 
   const handleButtonPress = useCallback(
-    (nodeIds: string[], chatText) => () => {
+    (nodeIds: string[], chatText: string) => () => {
       setCurrentNodeIds(nodeIds);
       setActiveChats((chats) => [
         ...chats,
@@ -63,7 +64,7 @@ const ChatWrapper = () => {
         data={activeChats}
         itemLayoutAnimation={Layout.springify()}
         renderItem={({ item }) => {
-          if (!item) return null;
+          if (!item) return null; // TODO: find a better way to handle this
           return (
             <ChatBubble
               text={item?.input?.text ?? item?.text}

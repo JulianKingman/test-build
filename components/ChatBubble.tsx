@@ -1,10 +1,15 @@
 import React, { useMemo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import COLORS from "../lark/colors";
 import Avatar from "./Avatar";
 
 interface ChatBubbleProps {
-  text: string;
+  text?: string;
   lark?: boolean;
   onPress?: () => void;
 }
