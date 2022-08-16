@@ -1,0 +1,35 @@
+{
+  "startNodeId": "1",
+  "nodes": {
+    "1": {
+      "childrenIds": ["2"],
+      "text": "Hello! Welcome to Lark!"
+    },
+    "2": {
+      "childrenIds": ["3", "4"],
+      "text": "Do you want to lose weight?"
+    },
+    "3": {
+      "childrenIds": ["5"],
+      "input": {
+        "type": "button",
+        "text": "Yes"
+      }
+    },
+    "4": {
+      "childrenIds": ["6"],
+      "input": {
+        "type": "button",
+        "text": "No"
+      }
+    },
+    "5": {
+      "childrenIds": [],
+      "text": "Lark can help you lose weight."
+    },
+    "6": {
+      "childrenIds": [],
+      "text": "Lark can help you keep fit."
+    }
+  }
+}
