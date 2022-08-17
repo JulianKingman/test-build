@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Animated, { Layout } from "react-native-reanimated";
-const conversation: Conversations = require("../lark/conversation.json");
+const conversation: Conversations = require("../isIncoming/conversation.json");
 
-import COLORS from "../lark/colors";
+import COLORS from "../utils/colors";
 import ChatBubble from "./ChatBubble";
 
 const DELAY = 1.5 * 1000;
@@ -49,7 +49,7 @@ const ChatWrapper = () => {
       setCurrentNodeIds(nodeIds);
       setActiveChats((chats) => [
         ...chats,
-        { text: chatText, childrenIds: [], lark: false },
+        { text: chatText, childrenIds: [], isIncoming: false },
       ]);
       setButtons([]);
     },
@@ -68,7 +68,7 @@ const ChatWrapper = () => {
           return (
             <ChatBubble
               text={item?.input?.text ?? item?.text}
-              lark={item?.lark}
+              isIncoming={item?.isIncoming}
             />
           );
         }}
@@ -84,7 +84,7 @@ const ChatWrapper = () => {
           <ChatBubble
             onPress={handleButtonPress(item.childrenIds, item?.input?.text)}
             text={item?.input?.text}
-            lark={false}
+            isIncoming={false}
           />
         )}
         scrollEnabled={false}

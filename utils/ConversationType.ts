@@ -10,5 +10,5 @@ interface ConversationNode {
     text: string;
     type?: "button";
   };
-  lark?: boolean; // whether it's from Lark or not, I add this
+  isIncoming?: boolean; // whether it's from Lark or not, I add this
 }

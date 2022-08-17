@@ -5,19 +5,19 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import COLORS from "../lark/colors";
+import COLORS from "../utils/colors";
 import Avatar from "./Avatar";
 
 interface ChatBubbleProps {
   text?: string;
-  lark?: boolean;
+  isIncoming?: boolean;
   onPress?: () => void;
 }
 
-const ChatBubble = ({ lark = true, text, onPress }: ChatBubbleProps) => {
+const ChatBubble = ({ isIncoming = true, text, onPress }: ChatBubbleProps) => {
   const dynamicStyles = useMemo(
     () =>
-      lark
+      isIncoming
         ? {
             wrapper: {},
             bubble: {
@@ -39,14 +39,14 @@ const ChatBubble = ({ lark = true, text, onPress }: ChatBubbleProps) => {
             },
             text: { color: COLORS.white },
           },
-    [lark]
+    [isIncoming]
   );
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.wrapper, dynamicStyles.wrapper]}
     >
-      {lark && <Avatar />}
+      {isIncoming && <Avatar />}
       <View style={[styles.bubble, dynamicStyles.bubble]}>
         <Text style={dynamicStyles.text}>{text}</Text>
       </View>
