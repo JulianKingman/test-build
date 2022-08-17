@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Animated, { Layout } from "react-native-reanimated";
-const conversation: Conversations = require("../isIncoming/conversation.json");
+const conversation: Conversations = require("../utils/conversation.json");
 
 import COLORS from "../utils/colors";
 import ChatBubble from "./ChatBubble";
